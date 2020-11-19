@@ -1,0 +1,61 @@
+<tr id="details" class="collapse" style="background-color: aliceblue;">
+  <td colspan="{{len}}">
+  <div class="col-sm-offset-3">Issue Details:-</div>
+        <form class="form-horizontal" style="max-width:500px;margin:5px auto;">
+          <div class="form-group">
+            <label for="issue-title" class="control-label col-sm-3">Title</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="issue-title" required="true" value="{{Title}}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="issue-desc" class="control-label col-sm-3" >Description</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" id="issue-desc" required = "true" disabled>{{Description}}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="posted-by" class="control-label col-sm-3" >Posted By</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="posted-by" required = "true" value="{{FirstName}} {{LastName}}" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="issue-priority" class="control-label col-sm-3" >Priority</label>
+            <div class="col-sm-6">
+              <select id="issue-priority" class = "form-control" value="{{Priority}}" disabled>
+                <option value="1">Normal</option>
+                <option value="2">Urgent</option>
+                <option value="3">Immediate</option>
+              </select>
+            </div>
+          </div>
+
+        </form>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Comments</th>
+            <th>ModifiedBy</th>
+            <th>ModifiedOn</th>
+            <th>AssignedTo</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="issue-histories">
+          {{#each history}}
+            <tr>
+              <td>{{Comments}}</td>
+              <td>{{ModifiedBy}}</td>
+              <td>{{ModifiedOn}}</td>          
+              <td>{{AssignedTo}}</td>
+              <td>{{Status}}</td>            
+            </tr>
+          {{/each}}
+        </tbody>
+    </table>
+    <button type="button" data-toggle="collapse" data-target = "#details" class="btn btn-default btn" action = "collapse" style="display: block;margin: 5px auto;">
+      Back
+    </button>
+  </td>
+</tr>

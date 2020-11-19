@@ -1,0 +1,152 @@
+<div id="employeesTemplate">
+
+  <div id="search-options">
+    <h3 style="text-align: center;margin: 10px;padding: 15px;">Search By:</h3>
+    <div class="form-inline">
+      <div class="form-group col-sm-4">
+        <label for="fist-name" class="col-sm-4">FirstName</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="first-name" placeholder="Hardeep">
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="last-name" class="col-sm-4">LastName</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="last-name" placeholder="Raike">
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="email" class="col-sm-4">Email</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="email" placeholder="example@nagarro.com">
+        </div>
+      </div>
+      <div class="form-group col-sm-12" style="margin: 10px 0px;"></div>
+      <div class="form-group col-sm-4">
+        <label for="beg-date" class="col-sm-4">Begining Date</label>
+        <div class="col-sm-8">
+          <input type="date" class="form-control" id="beg-date">
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="end-date" class="col-sm-4">End Date</label>
+        <div class="col-sm-8">
+          <input type="date" class="form-control" id="end-date">
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="dept" class="col-sm-4">Department</label>
+        <div class="col-sm-8">
+          <select id="dept" class="form-control">
+            <option value="">Unknown</option>
+            {{#each .}}
+            <option value="{{DepartmentId}}">{{DepartmentName}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-sm-12">
+        <button type="submit" id="search-btn" style="display: block; margin: 10px auto;"
+          class="btn btn-default">Search</button>
+      </div>
+    </div>
+  </div>
+  <button type="button" data-toggle="modal" data-modaltitle="Add Employee" action="create" data-target="#employeeModal"
+    id="create-btn" style="display: block; margin: 10px auto;" class="btn btn-default">Add Employee</button>
+  <div id="search-result" style="display:none;">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>Email</th>
+          <th>DateOfJoining</th>
+          <th>Department</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="emp-tupples">
+      </tbody>
+    </table>
+  </div>
+  <div id="employeeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 id="modalTitle" class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <form id="modal-form" class="form-horizontal">
+            <div class="form-group">
+              <label for="firstName" class="col-sm-3 required-field control-label">First Name</label>
+              <div class="col-sm-9">
+                <input type="text" maxlength="49" class="form-control" id="firstName" placeholder="First Name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="col-sm-3 required-field control-label">Last Name</label>
+              <div class="col-sm-9">
+                <input type="text" maxlength="49" class="form-control" id="lastName" placeholder="Last Name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="new-email" class="col-sm-3 required-field control-label">Email</label>
+              <div class="col-sm-9">
+                <input type="email" class="form-control" id="new-email" placeholder="Email" rquired>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="doj" class="col-sm-3 required-field control-label">Date Of Joining</label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" id="doj" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="dot" class="col-sm-3 control-label">Termination Date</label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" id="dot" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="modal-dept" class="col-sm-3 required-field  control-label">Department</label>
+              <div class="col-sm-9">
+                <select id="modal-dept" class="form-control" required>
+                  {{#each .}}
+                  <option value="{{DepartmentId}}">{{DepartmentName}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="isAdmin" class="col-sm-3 required-field control-label">Is Admin ?</label>
+              <div class="row col-sm-9">
+                <div class="col-sm-3">
+                  <div class="input-group" id="isAdmin">
+                    <span class="input-group-addon">
+                      <input type="radio" name="isAdmin" value="1" aria-label="..."> Yes
+                    </span>
+                    <span class="input-group-addon">
+                      <input type="radio" name="isAdmin" value="0" aria-label="..." checked> No
+                    </span>
+                  </div><!-- /input-group -->
+                </div><!-- /.col-sm-4 -->
+              </div><!-- /.row -->
+            </div>
+            <div class="form-group">
+              <label for="password" class="required-field col-sm-3 control-label">Password</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="password" required>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="btnSave" form="modal-form" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>

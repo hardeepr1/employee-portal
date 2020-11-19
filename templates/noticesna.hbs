@@ -1,0 +1,14 @@
+<div id="divNoticesTemplate">
+  <div id="divNotices">
+      {{#each .}}
+      <div notice-id="{{NoticeId}}" class="panel panel-default">
+          <div class="panel-heading" info='title'><span>{{Title}}</span>          
+            <span class="badge pull-right" style= "margin-right: 15px">Posted by: <span postedby = "{{PostedBy}}"info="posted-by">{{FirstName}}</span> on <span info="date">{{StartDate}}</span></span>           
+          </div>
+          <div class="panel-body">
+            <p info='desc'>{{Description}}</p>                                      
+          </div>
+      </div>
+      {{/each}}       
+  </div>
+</div>

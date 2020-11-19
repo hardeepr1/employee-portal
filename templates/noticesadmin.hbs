@@ -1,0 +1,66 @@
+<div id="divNoticesTemplate">
+ 	<button type="button" class="btn btn-primary btn-lg" style = "display: block; margin: 5px auto;"action = "create" data-toggle="modal" data-target="#noticeModal" data-modaltitle="Create Notice">Add Notice<span class="badge">
+ 	<span class="glyphicon glyphicon-plus-sign"style="font-size:12px;"></span>
+ 	</span>
+	</button>
+  	<div id="divNotices">
+  		{{#each .}}
+      	<div notice-id="{{NoticeId}}" class="panel panel-default">
+          	<div class="panel-heading" info='title'><span>{{Title}}</span>
+          		<a href="#notices" class="pull-right glyphicon glyphicon-remove"action = "delete"style="font-size:16px;"></a>	
+
+          		<a href="#notices" class="pull-right glyphicon glyphicon-edit"data-toggle="modal" data-modaltitle = "Edit Notice:- {{Title}}" data-target="#noticeModal" action = "edit" style="font-size:16px;margin-right: 10px;"></a>
+              
+          		<span class="badge pull-right" style= "margin-right: 15px">Posted by: <span postedby = "{{PostedBy}}" info="posted-by">{{FirstName}}</span> on <span info="date">{{StartDate}}</span></span>	          
+          	</div>
+          	<div class="panel-body">
+              <p info='desc'>{{Description}}</p>	                	                  
+          	</div>
+      	</div> 
+      	{{/each}}      
+  	</div>
+
+    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalTitle"></h4>
+              </div>
+              <div class="modal-body">
+                <form class="form-horizontal" id="submit-notice">
+                  <div class="form-group">
+                    <label for="noticeTitle" class=" required-field col-sm-3 control-label">Title</label>
+                    <div class="col-sm-9">
+                    	<input type="text" maxlength="99" class="form-control" id="notice-title" required>
+                    </div>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="notice-desc" class="required-field control-label col-sm-3">Description</label>
+                    <div class="col-sm-9">
+                    	<textarea class="col-sm-9 form-control" maxlength = "499" id="notice-desc" required></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                  	<label for="start-date" class="required-field control-label col-sm-3">Start Date</label>
+                  	<div class="col-sm-9">
+                  		<input type = "date" class="form-control" id="start-date" required>
+                  	</div>		                  			                            
+                  </div>
+                  <div class="form-group">
+                  	<label for="end-date" class="required-field control-label col-sm-3">Expiration Date</label>
+                  	<div class="col-sm-9">
+                  		<input type = "date" class="form-control" id="end-date" required>
+                  	</div>		                  			                            
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" form = "submit-notice" class="btn btn-primary" id="save-btn">Save Changes</button>
+              </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>

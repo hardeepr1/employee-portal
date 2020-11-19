@@ -1,0 +1,16 @@
+body{
+	font-size: 16px;
+}
+
+.disable-event{
+	pointer-events: none;
+}
+
+.required-field::after{
+	content: '*';
+	color: red;
+}
+
+#search-options{
+	box-shadow: 0px -7px 4px rgba(0,0,0,0.3);
+}

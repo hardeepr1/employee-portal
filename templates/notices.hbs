@@ -1,0 +1,51 @@
+<style>
+</style>
+
+<div id="divNoticesTemplate">
+    <div id="divNotices">
+        {{#each .}}
+        <div notice-id="{{id}}" class="panel panel-default">
+            <div class="panel-heading" info='title'><span>{{title}}</span><span class="badge pull-right">Random Info</span></div>
+            <div class="panel-body">
+                <p info='desc'>{{description}}</p>
+                <a class="btn btn-primary " href="#notices" data-toggle="modal" data-modaltitle = "Edit Notice" data-target="#noticeModal" action = "edit"role="button">Edit</a>
+                <a class="btn btn-primary "  action="delete" href="#notices" role="button">Delete</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+
+    <button type="button" class="btn btn-primary btn-lg" action = "create" data-toggle="modal" 
+        data-target="#noticeModal" data-modaltitle="Create Notice">
+        Add Notice
+    </button>
+
+    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title h2" id="myModalTitle"></h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="noticeTitle" class="required-field control-label">Title</label>
+                    <input type="text" class="form-control" id="notice-title">
+                  </div>
+                  <div class="form-group">
+                    <label for="notice-desc" class="required-field control-label h3">Description</label>
+                    <textarea class="form-control h4" id="notice-desc"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-btn">Save Changes</button>
+              </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
